@@ -57,7 +57,7 @@
                 <version>2.2</version>
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
-                    <path>/Task7_</path>
+                    <path>/Task7</path>
                     <username>admin</username>
                     <password>admin</password>
                 </configuration>
