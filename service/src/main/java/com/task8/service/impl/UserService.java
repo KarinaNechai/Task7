@@ -8,10 +8,10 @@ import java.util.List;
 
 public class UserService implements IUserService {
 
-    UserDao userDao = UserDao.getInstance().getInstance();
+    UserDao userDao = UserDao.getInstance();
     private static volatile IUserService instance;
     private void UserSevice(){
-    };
+    }
 
     public static IUserService getInstance() {
         IUserService localInstance = instance;

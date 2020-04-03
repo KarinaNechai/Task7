@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/*")
+@WebFilter("/")
 public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest rq, ServletResponse rs, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) rq;
+ /*       HttpServletRequest request = (HttpServletRequest) rq;
         User authUser = (User)request.getSession().getAttribute("authUser");
         if(authUser == null){
-            rq.getRequestDispatcher("login").forward(request, ((HttpServletResponse) rs));
+            (HttpServletResponse) rs.sendRedirect("index.jsp"
         }
-        filterChain.doFilter(rq, rs);
+        filterChain.doFilter(rq, rs);*/
     }
 }

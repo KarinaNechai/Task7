@@ -37,8 +37,8 @@ public class UserDao implements IUserDao {
     @Override
     public boolean insert(User user) {
         if (users.containsKey(user.getLogin())) return false;
-        users.putIfAbsent(user.getLogin(),user);
-        return true;
+        User userResult=users.putIfAbsent(user.getLogin(),user);
+        return userResult!=null;
     }
 
     @Override
@@ -68,8 +68,8 @@ public class UserDao implements IUserDao {
 
     @Override
     public List<User> getUsersByRole(Role role) {
-        return users.entrySet().stream().filter(x->x.getValue().isActual()==true).filter(x->x.getValue().getRole().
-                toString().equals(role.toString())). map(x->x.getValue()).collect(Collectors.toList());
+        return users.values().stream().filter(User::isActual).filter(user -> user.getRole().
+                toString().equals(role.toString())).collect(Collectors.toList());
     }
 
     @Override
