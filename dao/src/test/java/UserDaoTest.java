@@ -76,7 +76,7 @@ public class UserDaoTest {
     }
 
 
- /*  @Test
+  @Test
     public void deleteTest() {
         String loginRight = "login_loginUpdateR";
         String passwordRight = "PasswordR";
@@ -97,5 +97,5 @@ public class UserDaoTest {
         assertFalse("Delete deleted user", userDao.delete(loginRight));
         assertFalse("Delete unexist user", userDao.delete(loginWrong));
         assertFalse("Delete null user", userDao.delete(null));
-    }*/
+    }
 }
