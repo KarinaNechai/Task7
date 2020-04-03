@@ -1,6 +1,8 @@
 package com.task8.model;
 
-    public class User {
+import java.util.Objects;
+
+public class User {
         private String firstName;
         private String lastName;
         private String phone;
@@ -33,6 +35,7 @@ package com.task8.model;
         }
 
         public String getLogin() {
+
             return login;
         }
 
@@ -58,5 +61,43 @@ package com.task8.model;
 
         public void setActual(boolean actual) {
             isActual = actual;
+        }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        boolean a=isActual() == user.isActual() &&
+                this.getFirstName().equals(user.getFirstName()) &&
+                this.getLastName().equals(user.getLastName()) &&
+                this.getPhone().equals(user.getPhone()) &&
+                this.getEmail().equals( user.getEmail()) &&
+                this.getLogin().equals(user.getLogin()) &&
+                this.getPassword().equals(user.getPassword()) &&
+                this.getRole() == user.getRole();
+        return a;
+    }
+
+    @Override
+    public int hashCode() {
+            int i=this.getFirstName().hashCode()+this.getLastName().hashCode()+this.getPhone().hashCode()+this.getEmail().hashCode()+this.getPassword().hashCode();
+        return i;
+                //Objects.hash(getFirstName(), getLastName(), getPhone(), getEmail(), getLogin(), getPassword(), getRole(), isActual());
+    }
+
+    @Override
+        public String toString() {
+            return "User{" +
+                    "firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", email='" + email + '\'' +
+                    ", login='" + login + '\'' +
+                    ", password='" + password + '\'' +
+                    ", role=" + role +
+                    ", isActual=" + isActual +
+                    '}';
         }
     }

@@ -36,9 +36,10 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean insert(User user) {
+        if (user==null) return false;
         if (users.containsKey(user.getLogin())) return false;
-        User userResult=users.putIfAbsent(user.getLogin(),user);
-        return userResult!=null;
+        users.putIfAbsent(user.getLogin(),user);
+        return users.containsKey(user.getLogin());
     }
 
     @Override
@@ -52,7 +53,7 @@ public class UserDao implements IUserDao {
     @Override
     public boolean delete(String login) {
         User resultUser=users.get(login);
-        if (resultUser==null) {
+        if ((resultUser==null)||(!resultUser.isActual())) {
             return false;
         }
         else{
@@ -63,7 +64,8 @@ public class UserDao implements IUserDao {
 
     @Override
     public User getUserBylogin(String login) {
-        return users.get(login);
+        if (login==null) return null;
+         return users.get(login);
     }
 
     @Override
@@ -74,8 +76,10 @@ public class UserDao implements IUserDao {
 
     @Override
     public User login(String login, String password) {
-        User resultUser=users.get(login);
-        if (resultUser==null) return null;
-        return resultUser.getPassword().equals(password)?resultUser:null;
+        User a=getUserBylogin(login);
+        if (a==null) return null;
+        boolean b=a.getPassword().equals(password);
+        return a.getPassword().equals(password)?a:null;
     }
+
 }
